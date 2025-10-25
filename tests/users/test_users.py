@@ -18,10 +18,9 @@ from tools.allure.tags import AllureTag
 from tools.allure.epics import AllureEpic  # Импортируем enum AllureEpic
 from tools.allure.features import AllureFeature  # Импортируем enum AllureFeature
 from tools.allure.stories import AllureStory
-from tools.allure.suite import AllureSuite  # Импортируем enum AllureEpic
-from tools.allure.parent_suite import AllureParent_suite  # Импортируем enum AllureFeature
+from tools.allure.suite import AllureSuite
+from tools.allure.parent_suite import AllureParent_suite
 from tools.allure.sub_suite import AllureSub_suite
-
 
 
 @pytest.mark.users

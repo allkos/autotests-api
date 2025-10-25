@@ -15,6 +15,9 @@ from tools.allure.tags import AllureTag  # Импортируем enum с тег
 from tools.allure.epics import AllureEpic  # Импортируем enum AllureEpic
 from tools.allure.features import AllureFeature  # Импортируем enum AllureFeature
 from tools.allure.stories import AllureStory  # Импортируем enum AllureStory
+from tools.allure.suite import AllureSuite
+from tools.allure.parent_suite import AllureParent_suite
+from tools.allure.sub_suite import AllureSub_suite
 
 
 @pytest.mark.regression
@@ -22,8 +25,11 @@ from tools.allure.stories import AllureStory  # Импортируем enum Allu
 @allure.tag(AllureTag.REGRESSION, AllureTag.AUTHENTICATION)
 @allure.epic(AllureEpic.LMS)  # Добавили epic
 @allure.feature(AllureFeature.AUTHENTICATION)  # Добавили feature
+@allure.parent_suite(AllureParent_suite.LMS)
+@allure.sub_suite(AllureSub_suite.AUTHENTICATION)
 class TestAuthentication:
     @allure.story(AllureStory.LOGIN)  # Добавили story
+    @allure.suite(AllureSuite.LOGIN)
     @allure.title("Login with correct email and password")
     @allure.severity(Severity.BLOCKER)  # Добавили severity
     def test_login(
