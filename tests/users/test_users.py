@@ -18,9 +18,7 @@ from tools.allure.tags import AllureTag
 from tools.allure.epics import AllureEpic  # Импортируем enum AllureEpic
 from tools.allure.features import AllureFeature  # Импортируем enum AllureFeature
 from tools.allure.stories import AllureStory
-from tools.allure.suite import AllureSuite
-from tools.allure.parent_suite import AllureParent_suite
-from tools.allure.sub_suite import AllureSub_suite
+
 
 
 @pytest.mark.users
@@ -28,14 +26,14 @@ from tools.allure.sub_suite import AllureSub_suite
 @allure.tag(AllureTag.USERS, AllureTag.REGRESSION)
 @allure.epic(AllureEpic.LMS)  # Добавили epic
 @allure.feature(AllureFeature.USERS)  # Добавили feature
-@allure.parent_suite(AllureParent_suite.LMS)  # Добавили epic
-@allure.sub_suite(AllureSub_suite.USERS)  # Добавили feature
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.USERS)
 class TestUsers:
     @pytest.mark.parametrize("email", ["mail.ru", "gmail.com", "example.com"])
     @allure.title("Create user")
     @allure.tag(AllureTag.CREATE_ENTITY)
     @allure.story(AllureStory.CREATE_ENTITY)
-    @allure.suite(AllureSuite.CREATE_ENTITY)
+    @allure.sub_suite(AllureStory.CREATE_ENTITY)
     @allure.severity(Severity.BLOCKER)  # Добавили severity
     def test_create_user(self, email: str, public_users_client: PublicUsersClient):
         allure.dynamic.title(f"Attempt to create user with email: {email}")
@@ -51,7 +49,7 @@ class TestUsers:
     @allure.title("Get user me")
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.story(AllureStory.GET_ENTITY)
-    @allure.suite(AllureSuite.GET_ENTITY)
+    @allure.sub_suite(AllureStory.GET_ENTITY)
     @allure.severity(Severity.CRITICAL)  # Добавили severity
     def test_get_user_me(
             self,

@@ -19,9 +19,6 @@ from tools.allure.tags import AllureTag  # Импортируем enum с тег
 from tools.allure.epics import AllureEpic  # Импортируем enum AllureEpic
 from tools.allure.features import AllureFeature  # Импортируем enum AllureFeature
 from tools.allure.stories import AllureStory  # Импортируем enum AllureStory
-from tools.allure.suite import AllureSuite
-from tools.allure.parent_suite import AllureParent_suite
-from tools.allure.sub_suite import AllureSub_suite
 
 
 
@@ -30,13 +27,13 @@ from tools.allure.sub_suite import AllureSub_suite
 @allure.tag(AllureTag.EXERCISES, AllureTag.REGRESSION)
 @allure.epic(AllureEpic.LMS)  # Добавили epic
 @allure.feature(AllureFeature.EXERCISES)
-@allure.parent_suite(AllureParent_suite.LMS)
-@allure.sub_suite(AllureSub_suite.FILES)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.EXERCISES)
 class TestExercises:
     @allure.tag(AllureTag.CREATE_ENTITY)  # Добавили тег
     @allure.title("Create exercise")
     @allure.story(AllureStory.CREATE_ENTITY)
-    @allure.suite(AllureSuite.CREATE_ENTITY)
+    @allure.sub_suite(AllureStory.CREATE_ENTITY)
     @allure.severity(Severity.BLOCKER)  # Добавили severity
     def test_create_exercise(
         self,
@@ -53,7 +50,7 @@ class TestExercises:
     @allure.title("Get exercise")
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.story(AllureStory.GET_ENTITY)
-    @allure.suite(AllureSuite.GET_ENTITY)
+    @allure.sub_suite(AllureStory.GET_ENTITY)
     @allure.severity(Severity.BLOCKER)  # Добавили severity
     def test_get_exercise(
         self,
@@ -69,7 +66,7 @@ class TestExercises:
     @allure.title("Update exercise")
     @allure.tag(AllureTag.UPDATE_ENTITY)
     @allure.story(AllureStory.UPDATE_ENTITY)
-    @allure.suite(AllureSuite.UPDATE_ENTITY)
+    @allure.sub_suite(AllureStory.UPDATE_ENTITY)
     @allure.severity(Severity.CRITICAL)  # Добавили severity
     def test_update_exercise(
         self,
@@ -86,7 +83,7 @@ class TestExercises:
     @allure.title("Delete exercise")
     @allure.tag(AllureTag.DELETE_ENTITY)
     @allure.story(AllureStory.DELETE_ENTITY)
-    @allure.suite(AllureSuite.DELETE_ENTITY)
+    @allure.sub_suite(AllureStory.DELETE_ENTITY)
     @allure.severity(Severity.CRITICAL)  # Добавили severity
     def test_delete_exercise(
         self,
@@ -105,7 +102,7 @@ class TestExercises:
     @allure.title("Get exercises")
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.story(AllureStory.GET_ENTITIES)
-    @allure.suite(AllureSuite.GET_ENTITIES)
+    @allure.sub_suite(AllureStory.GET_ENTITIES)
     @allure.severity(Severity.BLOCKER)  # Добавили severity
     def test_get_exercises(
         self,
