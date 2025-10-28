@@ -8,8 +8,6 @@ from clients.private_http_builder import get_private_http_client, Authentication
 from tools.routes import APIRoutes  # Импортируем enum APIRoutes
 
 
-
-
 class CoursesClient(APIClient):
     """
     Клиент для работы с /api/v1/courses
